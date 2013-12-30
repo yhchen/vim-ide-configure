@@ -1,0 +1,45 @@
+# get current ip address
+get_current_ip()
+{
+	OS=`uname`
+	IO="" # store IP
+	case $OS in
+	Linux) IP=`ifconfig  | grep 'inet addr:'| grep -v '127.0.0.1' | cut -d: -f2 | awk '{ print $1}'`;;
+	FreeBSD|OpenBSD) IP=`ifconfig  | grep -E 'inet.[0-9]' | grep -v '127.0.0.1' | awk '{ print $2}'` ;;
+	SunOS) IP=`ifconfig -a | grep inet | grep -v '127.0.0.1' | awk '{ print $2} '` ;;
+	*) IP="Unknown";;
+	esac
+	echo "$IP"
+}
+
+# command `ps -ef | grep ${1}`
+psef()
+{
+	if [ "$#" != "1" ]; then
+		echo "usage : psef [program name]"
+		return -1
+	fi
+
+	ps -ef | grep "${1}" | grep -v "grep"
+}
+
+kill_all()
+{
+	ooo=`psef "${1}" | awk '{print($2)}'`
+	if [ "${ooo}" == "" ]; then
+		echo "proc ${1} not found."
+		return -1
+	fi
+	id_lst=""
+	for id in $ooo
+	do
+		id_lst="$id "
+	done
+
+	if [ "$id_lst" != "" ]; then
+		kill "$id_lst"
+	fi
+}
+
+alias pt_date="while ((1)); do date; sleep 1; done;"
+alias sdate='${SUDO} -S date -s '

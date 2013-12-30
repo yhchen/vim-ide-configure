@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/usr1/svn/yfpc/Phoenix/module/tuoshou/tuoshou_app'
+let g:netrw_dirhist_2='/home/tuoshou/.cyh'
+let g:netrw_dirhist_3='/home/chenyuhao/cyh/sh'
+let g:netrw_dirhist_4='/home/jimdavis/workspace/tmp/sh'
+let g:netrw_dirhist_5='/home/qa/bin/Debug/dump'
+let g:netrw_dirhist_6='/home/qa/bin/Debug/log-LogicServer'
